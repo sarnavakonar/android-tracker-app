@@ -189,11 +189,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String longitude = loc.getString("lng","");
             String lat[] = latitude.split(",");
             String lng[] = longitude.split(",");
-            for(int i=0; i< lat.length ;i++){
-                LatLng point = new LatLng( Double.parseDouble(lat[i]), Double.parseDouble(lng[i]) );
-                options.add(point);
-            }
-            mMap.addPolyline(options);
+
+            try{
+                for(int i=0; i< lat.length ;i++){
+                    LatLng point = new LatLng( Double.parseDouble(lat[i]), Double.parseDouble(lng[i]) );
+                    options.add(point);
+                }
+                mMap.addPolyline(options);
+            }catch (Exception e){}
 
             if(lat.length > 2){
                 //marking the starting and ending point
